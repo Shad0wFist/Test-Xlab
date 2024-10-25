@@ -21,7 +21,7 @@ public class StoneSpawn : MonoBehaviour
         }
     }
 
-    IEnumerator SpawnStone()
+    public IEnumerator SpawnStone()
     {
         canSpawn = false;
 

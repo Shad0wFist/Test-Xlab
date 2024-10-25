@@ -18,6 +18,11 @@ public class PlayerController : MonoBehaviour
             freeCamera.Move();
         }
 
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            StartCoroutine(StoneSpawner.StartCoroutine());
+        }
+
         
 
     }
