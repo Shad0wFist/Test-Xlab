@@ -49,7 +49,7 @@ public class FlyCameraBehaviour : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.End))
         {
-            Screen.lockCursor = (Screen.lockCursor == false) ? true : false;
+            //Screen.lockCursor = (Screen.lockCursor == false) ? true : false;
         }
     }
 }

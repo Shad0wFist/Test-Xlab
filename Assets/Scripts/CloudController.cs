@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class CloudController : MonoBehaviour
 {
-    public List<GameObject> characters;
-    public float moveSpeed = 2f;
+    [SerializeField] private List<GameObject> characters;
+    [SerializeField] private GameObject cloud;
+    [SerializeField] private float moveSpeed = 2f;
     private int currentCharacterIndex = 0;
-    public ParticleSystem rainPS;
+    [SerializeField] private ParticleSystem rainPS;
     private Coroutine moveCoroutine;
     private float emoteDelay = 1.5f;
 
-    private void Update()
+    public void CloudMove()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (cloud != null)
         {
             if (rainPS.isPlaying)
             {
@@ -36,11 +37,11 @@ public class CloudController : MonoBehaviour
 
     private IEnumerator MoveToCharacter(GameObject target)
     {
-        Vector3 startPos = transform.position;
+        Vector3 startPos = cloud.transform.position;
         Vector3 targetPos = target.transform.position + new Vector3(0, 30, 0);
 
         // Начальный и конечный углы поворота
-        float startYRotation = transform.eulerAngles.y;
+        float startYRotation = cloud.transform.eulerAngles.y;
         float endYRotation = Random.Range(0f, 360f);
 
         float journeyLength = Vector3.Distance(startPos, targetPos);
@@ -52,18 +53,16 @@ public class CloudController : MonoBehaviour
             elapsedTime += Time.deltaTime;
             float fraction = elapsedTime / journeyTime;
 
-            // Плавное перемещение
-            transform.position = Vector3.Lerp(startPos, targetPos, fraction);
+            cloud.transform.position = Vector3.Lerp(startPos, targetPos, fraction);
 
-            // Плавное вращение
             float yRotation = Mathf.Lerp(startYRotation, endYRotation, fraction);
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, yRotation, transform.eulerAngles.z);
+            cloud.transform.eulerAngles = new Vector3(cloud.transform.eulerAngles.x, yRotation, cloud.transform.eulerAngles.z);
 
             yield return null;
         }
 
-        transform.position = targetPos;
-        transform.eulerAngles = new Vector3(transform.eulerAngles.x, endYRotation, transform.eulerAngles.z);
+        cloud.transform.position = targetPos;
+        cloud.transform.eulerAngles = new Vector3(cloud.transform.eulerAngles.x, endYRotation, cloud.transform.eulerAngles.z);
 
         rainPS.Play();
         ParticleSystem characterPS = target.GetComponentInChildren<ParticleSystem>();

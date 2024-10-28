@@ -8,15 +8,7 @@ public class ToolController : MonoBehaviour
     public GameObject tool;  // Текущий инструмент
     public Transform rightHand;
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ChangeTool();
-        }
-    }
-
-    void ChangeTool()
+    public void ChangeTool()
     {
         if (rightHand == null)
         {
@@ -31,8 +23,6 @@ public class ToolController : MonoBehaviour
 
         // Выбираем случайный инструмент из списка и создаём его
         GameObject randomTool = tools[Random.Range(0, tools.Count)];
-        // Vector3 targetPos = randomTool.transform.position;
-        // Vector3 targetRot = randomTool.transform.rotation;
         tool = Instantiate(randomTool, rightHand);
     }
 }

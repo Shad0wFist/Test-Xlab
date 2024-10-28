@@ -6,9 +6,14 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private FreeCamera freeCamera;
     [SerializeField] private GameObject ui;
+    [SerializeField] private GameObject stoneSpawner;
+    [SerializeField] private GameObject cloudController;
+    [SerializeField] private List<GameObject> villagers;
+
+
     void Update()
     {
-        if (!ui.activeSelf)
+        if (ui.activeSelf)
         {
             return;
         }
@@ -18,18 +23,22 @@ public class PlayerController : MonoBehaviour
             freeCamera.Move();
         }
 
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.X) && stoneSpawner != null)
         {
-            StartCoroutine(StoneSpawner.StartCoroutine());
+            StartCoroutine(stoneSpawner.GetComponent<StoneSpawner>().Spawn());
         }
 
-        
+        if (Input.GetKeyDown(KeyCode.Z) && cloudController != null)
+        {
+            cloudController.GetComponent<CloudController>().CloudMove();
+        }
 
+        if (Input.GetKeyDown(KeyCode.Space) && villagers != null)
+        {
+            for (int i = 0; i < villagers.Count; i++)
+            {
+                villagers[i].GetComponent<ToolController>().ChangeTool();
+            }
+        }
     }
-
-    // private void MoveCamera()
-    // {
-    //     float h = Input.GetAxis("Horizontal");
-	// 	float v = Input.GetAxis("Vertical");
-    // }
 }
