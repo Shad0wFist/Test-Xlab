@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ToolController : MonoBehaviour
 {
-    public List<GameObject> tools;  // Список инструментов-префабов
-    public GameObject tool;  // Текущий инструмент
-    public Transform rightHand;
+    [SerializeField] private List<GameObject> tools;  // Список инструментов-префабов
+    [SerializeField] private GameObject tool;  // Текущий инструмент
+    [SerializeField] private Transform rightHand;
 
     public void ChangeTool()
     {
