@@ -5307,7 +5307,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3
+      scalar: 2.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5478,7 +5478,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.5
+      scalar: 0.3
       minScalar: 0.1
       maxCurve:
         serializedVersion: 2
@@ -6061,7 +6061,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 100
+      scalar: 150
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -6499,7 +6499,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 0}
+        key0: {r: 0.61938256, g: 0.8872772, b: 1, a: 0}
         key1: {r: 1, g: 1, b: 1, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 1}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -8576,7 +8576,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    range: {x: 0, y: 1}
+    range: {x: 0, y: 0.5}
     separateAxes: 0
   RotationBySpeedModule:
     enabled: 0
@@ -8815,7 +8815,7 @@ ParticleSystem:
     type: 1
     collisionMode: 0
     colliderForce: 0
-    multiplyColliderForceByParticleSize: 0
+    multiplyColliderForceByParticleSize: 1
     multiplyColliderForceByParticleSpeed: 0
     multiplyColliderForceByCollisionAngle: 1
     m_Planes: []
@@ -9005,7 +9005,7 @@ ParticleSystem:
     enabled: 0
     subEmitters:
     - serializedVersion: 3
-      emitter: {fileID: 427678747}
+      emitter: {fileID: 0}
       type: 1
       properties: 0
       emitProbability: 0.5
@@ -15130,94 +15130,6 @@ PrefabInstance:
     - target: {fileID: 1470265986588302585, guid: f7095d729e91aba49acb21e869574704, type: 3}
       propertyPath: m_Name
       value: Ripple_PS
-      objectReference: {fileID: 0}
-    - target: {fileID: 5928838441021927683, guid: f7095d729e91aba49acb21e869574704, type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5928838441021927683, guid: f7095d729e91aba49acb21e869574704, type: 3}
-      propertyPath: ShapeModule.type
-      value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 5928838441021927683, guid: f7095d729e91aba49acb21e869574704, type: 3}
-      propertyPath: SubModule.enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5928838441021927683, guid: f7095d729e91aba49acb21e869574704, type: 3}
-      propertyPath: RotationModule.enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5928838441021927683, guid: f7095d729e91aba49acb21e869574704, type: 3}
-      propertyPath: RotationModule.x.scalar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5928838441021927683, guid: f7095d729e91aba49acb21e869574704, type: 3}
-      propertyPath: RotationModule.y.scalar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5928838441021927683, guid: f7095d729e91aba49acb21e869574704, type: 3}
-      propertyPath: InitialModule.rotation3D
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5928838441021927683, guid: f7095d729e91aba49acb21e869574704, type: 3}
-      propertyPath: ShapeModule.m_Rotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5928838441021927683, guid: f7095d729e91aba49acb21e869574704, type: 3}
-      propertyPath: RotationModule.curve.scalar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5928838441021927683, guid: f7095d729e91aba49acb21e869574704, type: 3}
-      propertyPath: RotationModule.separateAxes
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5928838441021927683, guid: f7095d729e91aba49acb21e869574704, type: 3}
-      propertyPath: ShapeModule.radiusThickness
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5928838441021927683, guid: f7095d729e91aba49acb21e869574704, type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5928838441021927683, guid: f7095d729e91aba49acb21e869574704, type: 3}
-      propertyPath: InitialModule.startSize.minScalar
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5928838441021927683, guid: f7095d729e91aba49acb21e869574704, type: 3}
-      propertyPath: InitialModule.startRotation.scalar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5928838441021927683, guid: f7095d729e91aba49acb21e869574704, type: 3}
-      propertyPath: InitialModule.startRotationX.scalar
-      value: 1.5707963
-      objectReference: {fileID: 0}
-    - target: {fileID: 5928838441021927683, guid: f7095d729e91aba49acb21e869574704, type: 3}
-      propertyPath: InitialModule.startRotationY.scalar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8063731033052097083, guid: f7095d729e91aba49acb21e869574704, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
-    - target: {fileID: 8063731033052097083, guid: f7095d729e91aba49acb21e869574704, type: 3}
-      propertyPath: m_Flip.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8063731033052097083, guid: f7095d729e91aba49acb21e869574704, type: 3}
-      propertyPath: m_AllowRoll
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8063731033052097083, guid: f7095d729e91aba49acb21e869574704, type: 3}
-      propertyPath: m_RenderMode
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8063731033052097083, guid: f7095d729e91aba49acb21e869574704, type: 3}
-      propertyPath: m_RenderAlignment
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8063731033052097083, guid: f7095d729e91aba49acb21e869574704, type: 3}
-      propertyPath: m_MeshDistribution
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

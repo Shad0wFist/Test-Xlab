@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RainCollision : MonoBehaviour
 {
-    public ParticleSystem rippleParticleSystem;
+    [SerializeField] private ParticleSystem rippleParticleSystem;
 
     private ParticleSystem rainParticleSystem;
     private List<ParticleCollisionEvent> collisionEvents;
