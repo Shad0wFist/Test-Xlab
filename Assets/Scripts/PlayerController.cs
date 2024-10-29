@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject ui;
     [SerializeField] private GameObject stoneSpawner;
     [SerializeField] private GameObject cloudController;
-    [SerializeField] private List<GameObject> villagers;
+    [SerializeField] private GameObject toolController;
 
 
     void Update()
@@ -33,12 +33,9 @@ public class PlayerController : MonoBehaviour
             cloudController.GetComponent<CloudController>().CloudMove();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && villagers != null)
+        if (Input.GetKeyDown(KeyCode.Space) && toolController != null)
         {
-            for (int i = 0; i < villagers.Count; i++)
-            {
-                villagers[i].GetComponent<ToolController>().ChangeTool();
-            }
+            toolController.GetComponent<ToolController>().ChangeTools();
         }
     }
 }

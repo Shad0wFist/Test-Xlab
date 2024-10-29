@@ -4,25 +4,15 @@ using UnityEngine;
 
 public class ToolController : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> tools;  // Список инструментов-префабов
-    [SerializeField] private GameObject tool;  // Текущий инструмент
-    [SerializeField] private Transform rightHand;
+    [SerializeField] private List<GameObject> villagers;
 
-    public void ChangeTool()
+    
+    public void ChangeTools()
     {
-        if (rightHand == null)
-        {
-            Debug.LogWarning("Right hand is not assigned!");
-            return;
-        }
-
-        if (tool != null)
-        {
-            Destroy(tool);
-        }
-
-        // Выбираем случайный инструмент из списка и создаём его
-        GameObject randomTool = tools[Random.Range(0, tools.Count)];
-        tool = Instantiate(randomTool, rightHand);
+        if (villagers != null)
+            foreach (var villager in villagers)
+            {
+                villager.GetComponent<ToolChanger>().ChangeTool();
+            }
     }
 }
