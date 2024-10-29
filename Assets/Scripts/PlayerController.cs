@@ -2,40 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+namespace TestTask
 {
-    [SerializeField] private FreeCamera freeCamera;
-    [SerializeField] private GameObject ui;
-    [SerializeField] private GameObject stoneSpawner;
-    [SerializeField] private GameObject cloudController;
-    [SerializeField] private GameObject toolController;
-
-
-    void Update()
+    public class PlayerController : MonoBehaviour
     {
-        if (ui.activeSelf)
-        {
-            return;
-        }
+        [SerializeField] private FreeCamera freeCamera;
+        [SerializeField] private GameObject ui;
+        [SerializeField] private GameObject stoneSpawner;
+        [SerializeField] private GameObject cloudController;
+        [SerializeField] private GameObject toolController;
 
-        if (freeCamera != null)
-        {
-            freeCamera.Move();
-        }
 
-        if (Input.GetKeyDown(KeyCode.X) && stoneSpawner != null)
+        void Update()
         {
-            StartCoroutine(stoneSpawner.GetComponent<StoneSpawner>().Spawn());
-        }
+            if (ui.activeSelf)
+            {
+                return;
+            }
 
-        if (Input.GetKeyDown(KeyCode.Z) && cloudController != null)
-        {
-            cloudController.GetComponent<CloudController>().CloudMove();
-        }
+            if (freeCamera != null)
+            {
+                freeCamera.Move();
+            }
 
-        if (Input.GetKeyDown(KeyCode.Space) && toolController != null)
-        {
-            toolController.GetComponent<ToolController>().ChangeTools();
+            if (Input.GetKeyDown(KeyCode.X) && stoneSpawner != null)
+            {
+                StartCoroutine(stoneSpawner.GetComponent<StoneSpawner>().Spawn());
+            }
+
+            if (Input.GetKeyDown(KeyCode.Z) && cloudController != null)
+            {
+                cloudController.GetComponent<CloudController>().CloudMove();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space) && toolController != null)
+            {
+                toolController.GetComponent<ToolController>().ChangeTools();
+            }
         }
     }
 }
