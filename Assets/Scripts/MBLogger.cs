@@ -19,14 +19,14 @@ public class MBLogger : MonoBehaviour
         Log("Start");
     }
 
-    private void Update()
-    {
-        
-    }
-
     private void FixedUpdate()
     {
 
+    }
+
+    private void Update()
+    {
+        
     }
 
     private void LateUpdate()
@@ -45,7 +45,7 @@ public class MBLogger : MonoBehaviour
     }
 
 
-    
+
     private void Log(string message)
     {
         Debug.Log($"{name}: message - frame{Time.frameCount}");
