@@ -8,6 +8,11 @@ namespace Golf
     {
         [SerializeField] private PlowController PlowController;
 
+        public void Awake()
+        {
+            Application.targetFrameRate = 60;
+        }
+
         private void Update()
         {
             if (Input.GetMouseButtonDown(0))  // ЛКМ нажата
