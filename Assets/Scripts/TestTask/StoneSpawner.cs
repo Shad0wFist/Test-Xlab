@@ -6,20 +6,20 @@ public class StoneSpawner : MonoBehaviour
 {
     private Transform m_point;
     [SerializeField] private GameObject[] fallingStonePrefabs;
-    
+
     [SerializeField] private float stoneLifeTime = 5f;
     [SerializeField] private float spawnDelay = 1f;
     private float m_growDuration = 0.2f; // Продолжительность роста валуна
     private float m_shrinkDuration = 0.5f; // Продолжительность сжатия валуна
-    
+
     private bool m_canSpawn = true;
 
-    
+
     private void Start()
     {
         m_point = transform;
     }
-    
+
     public IEnumerator Spawn()
     {
         if (!m_canSpawn) yield break;
@@ -57,5 +57,5 @@ public class StoneSpawner : MonoBehaviour
         }
         Destroy(stone);
     }
-    
+
 }
