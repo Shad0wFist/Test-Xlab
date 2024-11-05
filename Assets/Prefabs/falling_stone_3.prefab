@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 23769478158867138}
   - component: {fileID: -8282652634927238895}
   - component: {fileID: 899732983969845875}
+  - component: {fileID: -4004438103049041067}
   m_Layer: 3
   m_Name: falling_stone_3
   m_TagString: Untagged
@@ -135,6 +136,20 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 455995b8866658b42b3da7b1cab18535, type: 3}
+--- !u!114 &-4004438103049041067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553163231892768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f07e179bac902146b6e0f3605b52ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeTime: 5
+  isDirty: 0
 --- !u!1 &8595725292730950157
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Golf
@@ -9,13 +8,10 @@ namespace Golf
         private Transform m_point;
         [SerializeField] private GameObject[] fallingStonePrefabs;
 
-        [SerializeField] private float stoneLifeTime = 5f;
         [SerializeField] private float spawnDelay = 1f;
         private float m_growDuration = 0.2f; // Продолжительность роста валуна
-        private float m_shrinkDuration = 0.5f; // Продолжительность сжатия валуна
 
         private bool m_canSpawn = true;
-
 
         private void Start()
         {
@@ -33,37 +29,18 @@ namespace Golf
             m_canSpawn = false;
 
             int index = Random.Range(0, fallingStonePrefabs.Length);
-            GameObject stone = Instantiate(fallingStonePrefabs[index], m_point.position, Random.rotation, transform);
+            GameObject stoneObject = Instantiate(fallingStonePrefabs[index], m_point.position, Random.rotation, transform);
 
-            // Анимация появления (увеличение размеров от 0 до оригинального)
-            Vector3 originalScale = stone.transform.localScale;
-            stone.transform.localScale = Vector3.zero;
-            for (float t = 0; t < m_growDuration; t += Time.deltaTime)
+            // Получаем компонент Stone и запускаем анимацию появления
+            Stone stone = stoneObject.GetComponent<Stone>();
+            if (stone != null)
             {
-                stone.transform.localScale = Vector3.Lerp(Vector3.zero, originalScale, t / m_growDuration);
-                yield return null;
+                stone.StartGrowing(m_growDuration);
+                stone.StartCoroutine(stone.DestroyAfterTime()); // Начинаем уничтожение камня по времени
             }
-            stone.transform.localScale = originalScale;
-
-            StartCoroutine(DestroyStone(stone));
 
             yield return new WaitForSeconds(spawnDelay);
             m_canSpawn = true;
         }
-
-        IEnumerator DestroyStone(GameObject stone)
-        {
-            yield return new WaitForSeconds(stoneLifeTime);
-
-            // Анимация исчезновения (сжатие размеров до 0)
-            Vector3 originalScale = stone.transform.localScale;
-            for (float t = 0; t < m_shrinkDuration; t += Time.deltaTime)
-            {
-                stone.transform.localScale = Vector3.Lerp(originalScale, Vector3.zero, t / m_shrinkDuration);
-                yield return null;
-            }
-            Destroy(stone);
-        }
-
     }
 }

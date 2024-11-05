@@ -3788,7 +3788,6 @@ MonoBehaviour:
   - {fileID: 1689892608009186, guid: f80b770f4c947f443a15e74ae0055f2e, type: 3}
   - {fileID: 1290125285081394, guid: 6d0ae999a8dcab04f8668908b3e2ea62, type: 3}
   - {fileID: 1553163231892768, guid: 8844d5134fdeb944583e1501ecd505a2, type: 3}
-  stoneLifeTime: 30
   spawnDelay: 3
 --- !u!1001 &403448817
 PrefabInstance:
