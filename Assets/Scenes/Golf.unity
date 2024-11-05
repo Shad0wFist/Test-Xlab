@@ -9925,6 +9925,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4565743505842534, guid: 9e6377f4cae22eb4194f71c6e76c37b9, type: 3}
   m_PrefabInstance: {fileID: 1174128372}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1180656007 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9554562, guid: 453ee3288a60d864a95f4a435abcc2b3, type: 3}
+  m_PrefabInstance: {fileID: 1619919691}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1182078771 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1179599579098953273, guid: e1c5c663cd0bdad498cd62b9df2abef6, type: 3}
@@ -13797,6 +13802,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 424138, guid: 453ee3288a60d864a95f4a435abcc2b3, type: 3}
       propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9554562, guid: 453ee3288a60d864a95f4a435abcc2b3, type: 3}
+      propertyPath: m_CullingMode
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -17707,6 +17716,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlowController: {fileID: 1884453392}
+  trollAnimator: {fileID: 1180656007}
 --- !u!4 &2010914366
 Transform:
   m_ObjectHideFlags: 0
