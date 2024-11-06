@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 5
+  m_shrinkDuration: 0.2
   isDirty: 0
 --- !u!1 &8595725292730950157
 GameObject:

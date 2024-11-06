@@ -1,89 +1,55 @@
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 namespace Golf
 {
     public class PlowController : MonoBehaviour
     {
-        [Header("Plow Movement Settings")]
-        [SerializeField] private float hitSpeed = 10f;
-        [SerializeField] private float returnSpeed = 2f;
-        [SerializeField] private float angleA = -45f;
-        [SerializeField] private float angleB = 45f;
-        [SerializeField] private GameObject plow;
-        [SerializeField] private Transform point;  // точка на клюшке для отслеживания направления удара
-        [SerializeField] private float power = 100f;
+        public float maxAngle = 30f;
+        public float speed = 360f;
+        public float power = 100f;
+        public Transform point;
+        public event System.Action onCollisionStone;
 
-        private Quaternion m_rotationA;
-        private Quaternion m_rotationB;
-        private bool m_movingToB = false;
-        private bool m_isReturning = false;
         private Vector3 m_lastPointPosition;
         private Vector3 m_dir;
+        private bool m_isDown = false;
 
-        private void Start()
+        public void Down()
         {
-            m_rotationA = Quaternion.Euler(angleA, plow.transform.rotation.eulerAngles.y, plow.transform.rotation.eulerAngles.z);
-            m_rotationB = Quaternion.Euler(angleB, plow.transform.rotation.eulerAngles.y, plow.transform.rotation.eulerAngles.z);
-            m_lastPointPosition = point.position;
+            m_isDown = false;
+        }
+
+        public void Up()
+        {
+            m_isDown = true;
         }
 
         private void FixedUpdate()
         {
-            // Расчёт движения клюшки
-            if (m_movingToB)
-            {
-                MovePlow(m_rotationB, hitSpeed);
+            Vector3 angle = transform.localEulerAngles;
+            if (m_isDown)
+            {   
+                angle.x = Mathf.MoveTowardsAngle(angle.x, -maxAngle, speed * Time.fixedDeltaTime);
             }
-            else if (m_isReturning)
+            else
             {
-                MovePlow(m_rotationA, returnSpeed);
+                angle.x = Mathf.MoveTowardsAngle(angle.x, maxAngle, speed * Time.fixedDeltaTime);
             }
+            transform.localEulerAngles = angle;
 
-            // Обновляем направление удара
             m_dir = (point.position - m_lastPointPosition).normalized;
             m_lastPointPosition = point.position;
-        }
-
-        private void MovePlow(Quaternion targetRotation, float speed)
-        {
-            plow.transform.rotation = Quaternion.RotateTowards(plow.transform.rotation, targetRotation, speed * Time.deltaTime);
-
-            if (Quaternion.Angle(plow.transform.rotation, targetRotation) < 0.1f)
-            {
-                plow.transform.rotation = targetRotation;
-
-                if (m_movingToB)
-                {
-                    m_movingToB = false;
-                }
-                else if (m_isReturning)
-                {
-                    m_isReturning = false;
-                }
-            }
-        }
-
-        public void StartHit()
-        {
-            m_movingToB = true;
-            m_isReturning = false;
-        }
-
-        public void StopHit()
-        {
-            m_movingToB = false;
-            m_isReturning = true;
         }
 
         private void OnCollisionEnter(Collision other)
         {
             if (other.gameObject.TryGetComponent<Stone>(out var stone))
             {
-                Rigidbody stoneRigidbody = other.rigidbody;
-                if (stoneRigidbody != null)
-                {
-                    stoneRigidbody.AddForce(m_dir * power, ForceMode.Impulse);
-                }
+                // var contact = other.contacts[0];
+                other.rigidbody.AddForce(m_dir * power, ForceMode.Impulse);
+                onCollisionStone?.Invoke();
+                print("Hit!");
             }
         }
     }

@@ -18,12 +18,12 @@ namespace Golf
         {
             if (Input.GetMouseButtonDown(0))  // ЛКМ нажата
             {
-                PlowController.StartHit();
+                PlowController.Down();
             }
 
             if (Input.GetMouseButtonUp(0))  // ЛКМ отпущена
             {
-                PlowController.StopHit();
+                PlowController.Up();
             }
 
 
