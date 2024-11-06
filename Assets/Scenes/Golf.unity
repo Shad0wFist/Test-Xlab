@@ -10064,7 +10064,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1103453278}
   - component: {fileID: 1103453279}
-  - component: {fileID: 1103453280}
   - component: {fileID: 1103453281}
   m_Layer: 0
   m_Name: Cylinder
@@ -10111,19 +10110,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &1103453280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1103453277}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e49b9db9f54c6f54fb63d986d5a9ba83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  force: 1
 --- !u!54 &1103453281
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15511,7 +15497,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1667986650}
   - component: {fileID: 1667986651}
-  - component: {fileID: 1667986652}
   - component: {fileID: 1667986653}
   m_Layer: 0
   m_Name: Cube
@@ -15556,19 +15541,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1667986652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1667986649}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e49b9db9f54c6f54fb63d986d5a9ba83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  force: 10
 --- !u!54 &1667986653
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17644,11 +17616,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e95c7605da9c3c41abb49c06ab0c4e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitSpeed: 700
-  returnSpeed: 150
+  hitSpeed: 500
+  returnSpeed: 200
   angleA: -45
   angleB: 45
   plow: {fileID: 350799694413529035}
+  point: {fileID: 1667986650}
+  power: 100
 --- !u!4 &1884453393
 Transform:
   m_ObjectHideFlags: 0
