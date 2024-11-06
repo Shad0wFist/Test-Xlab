@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 namespace Golf
 {
@@ -11,33 +10,41 @@ namespace Golf
         public Transform point;
         public event System.Action onCollisionStone;
 
+        private Rigidbody m_rigidbody;
         private Vector3 m_lastPointPosition;
         private Vector3 m_dir;
         private bool m_isDown = false;
 
-        public void Down()
+        private void Awake()
         {
-            m_isDown = false;
+            m_rigidbody = GetComponent<Rigidbody>();
         }
 
-        public void Up()
+        public void Down()
         {
             m_isDown = true;
         }
 
+        public void Up()
+        {
+            m_isDown = false;
+        }
+
         private void FixedUpdate()
         {
-            Vector3 angle = transform.localEulerAngles;
+            Quaternion targetRotation;
             if (m_isDown)
-            {   
-                angle.x = Mathf.MoveTowardsAngle(angle.x, -maxAngle, speed * Time.fixedDeltaTime);
+            {
+                targetRotation = Quaternion.Euler(maxAngle, transform.eulerAngles.y, transform.eulerAngles.z);
             }
             else
             {
-                angle.x = Mathf.MoveTowardsAngle(angle.x, maxAngle, speed * Time.fixedDeltaTime);
+                targetRotation = Quaternion.Euler(-maxAngle, transform.eulerAngles.y, transform.eulerAngles.z);
             }
-            transform.localEulerAngles = angle;
 
+            m_rigidbody.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation, speed * Time.fixedDeltaTime));
+
+            // Рассчитываем направление от предыдущего положения к точке point
             m_dir = (point.position - m_lastPointPosition).normalized;
             m_lastPointPosition = point.position;
         }
@@ -46,10 +53,10 @@ namespace Golf
         {
             if (other.gameObject.TryGetComponent<Stone>(out var stone))
             {
-                // var contact = other.contacts[0];
+                // Отталкиваем камень в направлении удара
                 other.rigidbody.AddForce(m_dir * power, ForceMode.Impulse);
                 onCollisionStone?.Invoke();
-                print("Hit!");
+                Debug.Log("Hit!");
             }
         }
     }
