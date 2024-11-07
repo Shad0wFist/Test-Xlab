@@ -10,6 +10,7 @@ namespace Golf
         public float cameraMoveDuration = 2f;
         public Animator trollAnimator;
         public GameObject stoneSpawner, playerController;
+        public TrollController trollController;
         public PlowController villagerPlow;
 
         private Camera mainCamera;
@@ -34,8 +35,8 @@ namespace Golf
             yield return MoveCamera(cameraTargetPos2, cameraMoveDuration);
 
             // Шаг 4: Запуск второй анимации тролля
-            trollAnimator.SetTrigger("SecondTrigger");
-            stoneSpawner.SetActive(true);
+            trollController.StartMoving();
+            stoneSpawner.GetComponent<StoneSpawner>().enabled = true;
             villagerPlow.enabled = true;
             playerController.SetActive(true);
         }

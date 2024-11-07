@@ -1,21 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Golf
 {
     public class GameOver : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
+        [SerializeField] private GameObject gameOverUI;
+
+        private Camera mainCamera;
+
+        private void OnEnable()
         {
-        
+            if (gameOverUI != null)
+                gameOverUI.SetActive(true);
         }
 
-        // Update is called once per frame
-        void Update()
+        private void OnDisable()
         {
+            if(gameOverUI != null)
+                gameOverUI.SetActive(false);
+        }
+
         
+        public void Replay()
+        {
+            gameObject.SetActive(false);
+        }
+        public void MainMenu()
+        {
+            gameObject.SetActive(false);
         }
     }
 }

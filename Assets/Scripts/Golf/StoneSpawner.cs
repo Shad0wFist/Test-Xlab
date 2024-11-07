@@ -1,11 +1,13 @@
-using System.Collections;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Golf
 {
     public class StoneSpawner : MonoBehaviour
     {
         private Transform m_point;
+        private List<Stone> m_stones = new List<Stone>();
         [SerializeField] private GameObject[] fallingStonePrefabs;
 
         [SerializeField] private float spawnDelay = 1f;
@@ -23,6 +25,16 @@ namespace Golf
             StartCoroutine(Spawn());
         }
 
+        public void ClearStones()
+        {
+            foreach (var stone in m_stones)
+            {
+                Destroy(stone.gameObject);
+            }
+
+            m_stones.Clear();
+        }
+
         public IEnumerator Spawn()
         {
             if (!m_canSpawn) yield break;
@@ -33,6 +45,7 @@ namespace Golf
 
             // Получаем компонент Stone и запускаем анимацию появления
             Stone stone = stoneObject.GetComponent<Stone>();
+            m_stones.Add(stone);
             if (stone != null)
             {
                 stone.StartGrowing(m_growDuration);

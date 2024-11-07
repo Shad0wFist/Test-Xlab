@@ -56,7 +56,6 @@ namespace Golf
                 // Отталкиваем камень в направлении удара
                 other.rigidbody.AddForce(m_dir * power, ForceMode.Impulse);
                 onCollisionStone?.Invoke();
-                Debug.Log("Hit!");
             }
         }
     }
