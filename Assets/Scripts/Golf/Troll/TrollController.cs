@@ -118,11 +118,10 @@ namespace Golf
 
         public void Attack()
         {
-            isMoving = false;
             playerController.SetActive(false);
             stoneSpawner.GetComponent<StoneSpawner>().enabled = false;
             animator.SetTrigger(AttackTrigger);
-
+            isMoving = false;
             StartCoroutine(AttackCoroutine());
         }
 
