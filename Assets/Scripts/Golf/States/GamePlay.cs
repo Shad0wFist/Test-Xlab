@@ -6,36 +6,58 @@ namespace Golf
 {
     public class GamePlay : MonoBehaviour
     {
+        public GameObject gamePlayUI;
+        public GameObject pauseState;
         public Transform cameraTargetPos1, cameraTargetPos2;
         public float cameraMoveDuration = 2f;
-        public Animator trollAnimator;
+        public GameObject troll;
+        private Animator trollAnimator;
         public GameObject stoneSpawner, playerController;
         public TrollController trollController;
-        public PlowController villagerPlow;
+        private PlowController villagerPlow;
+        public GameObject plowObject;
+        public GameObject gamePlayObjects;
+        public GameObject gameOverObjects;
+        private Quaternion plowRotation;
 
         private Camera mainCamera;
 
         private void OnEnable()
         {
+            trollAnimator = troll.GetComponent<Animator>();
+            plowRotation = plowObject.transform.rotation;
             mainCamera = Camera.main;
+            gamePlayObjects.SetActive(true);
+            gameOverObjects.SetActive(false);
+
+            troll.GetComponent<TrollController>().OnAwake();
+            stoneSpawner.GetComponent<StoneSpawner>().ClearStones();
+            stoneSpawner.GetComponent<StoneSpawner>().enabled = false;
+            villagerPlow = plowObject.GetComponent<PlowController>();
             StartCoroutine(StartGameSequence());
+        }
+
+        private void OnDisable()
+        {
+            if (gamePlayUI != null)
+                gamePlayUI.SetActive(false);
+            if (plowObject != null)
+                plowObject.transform.rotation = plowRotation;
+            if (villagerPlow != null)
+                villagerPlow.enabled = false;
+            if (playerController != null)
+                playerController.SetActive(false);
         }
 
         private IEnumerator StartGameSequence()
         {
-
-            // Шаг 1: Перемещение камеры к первой цели
+            gamePlayUI.SetActive(false);
             yield return MoveCamera(cameraTargetPos1, cameraMoveDuration);
-
-            // Шаг 2: Запуск первой анимации тролля
             trollAnimator.SetTrigger("FirstTrigger");
             yield return new WaitForSeconds(trollAnimator.GetCurrentAnimatorStateInfo(0).length);
-
-            // Шаг 3: Перемещение камеры ко второй цели
             yield return MoveCamera(cameraTargetPos2, cameraMoveDuration);
-
-            // Шаг 4: Запуск второй анимации тролля
             trollController.StartMoving();
+            gamePlayUI.SetActive(true);
             stoneSpawner.GetComponent<StoneSpawner>().enabled = true;
             villagerPlow.enabled = true;
             playerController.SetActive(true);
@@ -57,6 +79,11 @@ namespace Golf
 
             mainCamera.transform.position = target.position;
             mainCamera.transform.rotation = target.rotation;
+        }
+
+        public void Pause()
+        {
+            pauseState.SetActive(true);
         }
     }
 }

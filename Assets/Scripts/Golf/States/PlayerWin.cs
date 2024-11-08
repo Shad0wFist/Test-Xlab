@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace Golf
 {
-    public class GameOver : MonoBehaviour
+    public class PlayerWin : MonoBehaviour
     {
-        [SerializeField] private GameObject gameOverUI;
+        [SerializeField] private GameObject playerWinUI;
         [SerializeField] private GameObject gamePlayState;
         [SerializeField] private GameObject mainMenuState;
 
@@ -13,26 +13,26 @@ namespace Golf
         private void OnEnable()
         {
             gamePlayState.SetActive(false);
-            if (gameOverUI != null)
-                gameOverUI.SetActive(true);
+            if (playerWinUI != null)
+                playerWinUI.SetActive(true);
         }
 
         private void OnDisable()
         {
-            if(gameOverUI != null)
-                gameOverUI.SetActive(false);
+            if(playerWinUI != null)
+                playerWinUI.SetActive(false);
         }
 
         
-        public void TryAgain()
+        public void Replay()
         {
-            gamePlayState.SetActive(true);
             gameObject.SetActive(false);
+            gamePlayState.SetActive(true);
         }
         public void MainMenu()
         {
-            mainMenuState.SetActive(true);
             gameObject.SetActive(false);
+            mainMenuState.SetActive(true);
         }
     }
 }

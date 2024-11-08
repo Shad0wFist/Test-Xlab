@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 namespace Golf
 {
@@ -14,9 +15,14 @@ namespace Golf
         private Rigidbody rb;
         private Animator animator;
         private bool isMoving = false;
-        [SerializeField] private GameObject attackObject; // Объект, включающийся во время атаки
-        [SerializeField] private GameObject idleObject; // Объект, отключающийся во время атаки
+        [SerializeField] private GameObject gameOverObjects; // Объект, включающийся во время атаки
+        [SerializeField] private GameObject gamePlayObjects; // Объект, отключающийся во время атаки
         [SerializeField] private GameObject stoneSpawner;
+        [SerializeField] private GameObject gameOverState;
+        [SerializeField] private GameObject playerWinState;
+        [SerializeField] private Transform trollPos;
+        [SerializeField] private GameObject playerController;
+        [SerializeField] private Slider healthBarSlider;
 
         private static readonly int MoveTrigger = Animator.StringToHash("Move");
         private static readonly int DamageTrigger = Animator.StringToHash("Damage");
@@ -26,13 +32,20 @@ namespace Golf
         private static readonly int ResetTrigger = Animator.StringToHash("Reset");
 
 
-        public void Awake()
+        private void Awake()
         {
+            OnAwake();
+        }
+
+        public void OnAwake()
+        {
+            transform.position = trollPos.position;
             rb = GetComponent<Rigidbody>();
             animator = GetComponent<Animator>();
             animator.SetTrigger(ResetTrigger);
             isMoving = false;
             currentHP = maxHP;
+            UpdateHealthBar();
         }
 
         private void FixedUpdate()
@@ -59,6 +72,7 @@ namespace Golf
         {
             currentHP -= damageAmount;
             isMoving = false;
+            UpdateHealthBar();
 
             if (currentHP <= 0)
             {
@@ -71,7 +85,7 @@ namespace Golf
                 else
                     animator.SetTrigger(DamageTrigger);
 
-                Invoke(nameof(ResumeMovement), animator.GetCurrentAnimatorStateInfo(0).length);
+                Invoke(nameof(ResumeMovement), animator.GetCurrentAnimatorStateInfo(0).length/3f);
             }
         }
 
@@ -87,16 +101,28 @@ namespace Golf
         private void Die()
         {
             // Запускаем анимацию смерти и отключаем дальнейшее движение
-            animator.SetTrigger(DeathTrigger);
             isMoving = false;
             rb.isKinematic = true;
+            playerController.SetActive(false);
+            stoneSpawner.GetComponent<StoneSpawner>().enabled = false;
+            animator.SetTrigger(DeathTrigger);
+
+            StartCoroutine(DieCoroutine());
+        }
+
+        private IEnumerator DieCoroutine()
+        {
+            yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+            playerWinState.SetActive(true);
         }
 
         public void Attack()
         {
             isMoving = false;
+            playerController.SetActive(false);
             stoneSpawner.GetComponent<StoneSpawner>().enabled = false;
             animator.SetTrigger(AttackTrigger);
+
             StartCoroutine(AttackCoroutine());
         }
 
@@ -104,8 +130,14 @@ namespace Golf
         {
             // Ждём половину времени атаки, чтобы включить нужный объект
             yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length / animationDivider);
-            idleObject.SetActive(false);
-            attackObject.SetActive(true);
+            gamePlayObjects.SetActive(false);
+            gameOverObjects.SetActive(true);
+            gameOverState.SetActive(true);
+        }
+
+        private void UpdateHealthBar()
+        {
+            healthBarSlider.value = (float) currentHP / maxHP;
         }
     }
 }

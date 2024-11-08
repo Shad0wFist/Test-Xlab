@@ -29,7 +29,8 @@ namespace Golf
         {
             foreach (var stone in m_stones)
             {
-                Destroy(stone.gameObject);
+                if (stone != null)
+                    Destroy(stone.gameObject);
             }
 
             m_stones.Clear();
