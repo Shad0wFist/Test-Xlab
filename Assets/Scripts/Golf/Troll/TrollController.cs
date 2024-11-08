@@ -12,6 +12,7 @@ namespace Golf
         public float animationDivider = 1.3f;
 
         private int currentHP;
+        private bool invincible;
         private Rigidbody rb;
         private Animator animator;
         private bool isMoving = false;
@@ -39,6 +40,7 @@ namespace Golf
 
         public void OnAwake()
         {
+            invincible = true;
             transform.position = trollPos.position;
             rb = GetComponent<Rigidbody>();
             animator = GetComponent<Animator>();
@@ -58,6 +60,7 @@ namespace Golf
 
         public void StartMoving()
         {
+            invincible = false;
             isMoving = true;
             animator.SetTrigger(MoveTrigger);
         }
@@ -70,22 +73,25 @@ namespace Golf
 
         public void Damage(int damageAmount, bool head)
         {
-            currentHP -= damageAmount;
-            isMoving = false;
-            UpdateHealthBar();
+            if (!invincible)
+            {
+                currentHP -= damageAmount;
+                isMoving = false;
+                UpdateHealthBar();
 
-            if (currentHP <= 0)
-            {
-                Die();
-            }
-            else
-            {
-                if (head)
-                    animator.SetTrigger(HeadDamageTrigger);
+                if (currentHP <= 0)
+                {
+                    Die();
+                }
                 else
-                    animator.SetTrigger(DamageTrigger);
+                {
+                    if (head)
+                        animator.SetTrigger(HeadDamageTrigger);
+                    else
+                        animator.SetTrigger(DamageTrigger);
 
-                Invoke(nameof(ResumeMovement), animator.GetCurrentAnimatorStateInfo(0).length/3f);
+                    Invoke(nameof(ResumeMovement), animator.GetCurrentAnimatorStateInfo(0).length / 3f);
+                }
             }
         }
 
@@ -103,6 +109,7 @@ namespace Golf
             // Запускаем анимацию смерти и отключаем дальнейшее движение
             isMoving = false;
             rb.isKinematic = true;
+            invincible = true;
             playerController.SetActive(false);
             stoneSpawner.GetComponent<StoneSpawner>().enabled = false;
             animator.SetTrigger(DeathTrigger);
@@ -118,6 +125,7 @@ namespace Golf
 
         public void Attack()
         {
+            invincible = true;
             playerController.SetActive(false);
             stoneSpawner.GetComponent<StoneSpawner>().enabled = false;
             animator.SetTrigger(AttackTrigger);
@@ -136,7 +144,7 @@ namespace Golf
 
         private void UpdateHealthBar()
         {
-            healthBarSlider.value = (float) currentHP / maxHP;
+            healthBarSlider.value = (float)currentHP / maxHP;
         }
     }
 }
