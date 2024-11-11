@@ -20,10 +20,14 @@ namespace Golf
         public GameObject gameOverObjects;
         private Quaternion plowRotation;
 
+        [SerializeField] private SoundManager soundManager;
+
+
         private Camera mainCamera;
 
         private void OnEnable()
         {
+            soundManager.PlayGameplayMusic();
             trollAnimator = troll.GetComponent<Animator>();
             plowRotation = plowObject.transform.rotation;
             mainCamera = Camera.main;

@@ -12,11 +12,14 @@ namespace Golf
         [SerializeField] private GameObject gamePlayObjects;
         [SerializeField] private GameObject gameOverObjects;
         [SerializeField] private StoneSpawner stoneSpawner;
+        [SerializeField] private SoundManager soundManager;
+
 
         private Camera mainCamera;
 
         private void OnEnable()
         {
+            soundManager.PlayMainMenuMusic();
             gamePlayObjects.SetActive(true);
             gameOverObjects.SetActive(false);
             mainCamera = Camera.main;
