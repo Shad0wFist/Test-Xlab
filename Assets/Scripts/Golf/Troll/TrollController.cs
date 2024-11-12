@@ -24,6 +24,9 @@ namespace Golf
         [SerializeField] private Transform trollPos;
         [SerializeField] private GameObject playerController;
         [SerializeField] private Slider healthBarSlider;
+        [SerializeField] private AudioClip trollDamaged;
+        [SerializeField] private AudioClip trollDamagedHead;
+        [SerializeField] private AudioClip thud;
 
         private static readonly int MoveTrigger = Animator.StringToHash("Move");
         private static readonly int DamageTrigger = Animator.StringToHash("Damage");
@@ -86,9 +89,24 @@ namespace Golf
                 else
                 {
                     if (head)
+                    {
+                        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("wound1") && !animator.GetCurrentAnimatorStateInfo(0).IsName("wound2"))
+                        {
+
+                            animator.SetTrigger(HeadDamageTrigger);
+                        }
                         animator.SetTrigger(HeadDamageTrigger);
+                        SoundManager.Instance.PlaySound(trollDamagedHead);
+                    }
                     else
-                        animator.SetTrigger(DamageTrigger);
+                    {
+                        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("wound1") && !animator.GetCurrentAnimatorStateInfo(0).IsName("wound2"))
+                        {
+
+                            animator.SetTrigger(DamageTrigger);
+                        }
+                        SoundManager.Instance.PlaySound(trollDamaged);
+                    }
 
                     Invoke(nameof(ResumeMovement), animator.GetCurrentAnimatorStateInfo(0).length / 3f);
                 }
@@ -113,6 +131,7 @@ namespace Golf
             playerController.SetActive(false);
             stoneSpawner.GetComponent<StoneSpawner>().enabled = false;
             animator.SetTrigger(DeathTrigger);
+            SoundManager.Instance.PlaySound(thud);
 
             StartCoroutine(DieCoroutine());
         }
@@ -137,6 +156,7 @@ namespace Golf
         {
             // Ждём половину времени атаки, чтобы включить нужный объект
             yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length / animationDivider);
+            SoundManager.Instance.PlaySound(thud);
             gamePlayObjects.SetActive(false);
             gameOverObjects.SetActive(true);
             gameOverState.SetActive(true);

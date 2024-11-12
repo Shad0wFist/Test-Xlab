@@ -7,6 +7,7 @@ namespace Golf
         [SerializeField] private GameObject playerWinUI;
         [SerializeField] private GameObject gamePlayState;
         [SerializeField] private GameObject mainMenuState;
+        [SerializeField] private AudioClip winSound;
 
         private Camera mainCamera;
 
@@ -15,12 +16,15 @@ namespace Golf
             gamePlayState.SetActive(false);
             if (playerWinUI != null)
                 playerWinUI.SetActive(true);
+            SoundManager.Instance.PlaySound(winSound);
+            SoundManager.Instance.GetCurrentPlayingMusic().volume = 0.2f;
         }
 
         private void OnDisable()
         {
             if(playerWinUI != null)
                 playerWinUI.SetActive(false);
+            SoundManager.Instance.GetCurrentPlayingMusic().volume = SoundManager.Instance.originalVolume;
         }
 
         

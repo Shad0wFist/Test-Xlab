@@ -9,11 +9,15 @@ namespace Golf
         public float power = 100f;
         public Transform point;
         public event System.Action onCollisionStone;
+        [Header("Sounds")]
+        public AudioClip[] swooshSounds;
+        public AudioClip[] stoneSounds;
 
         private Rigidbody m_rigidbody;
         private Vector3 m_lastPointPosition;
         private Vector3 m_dir;
         private bool m_isDown = false;
+
 
         private void Awake()
         {
@@ -23,6 +27,7 @@ namespace Golf
         public void Down()
         {
             m_isDown = true;
+            PlayRandomSound(swooshSounds);
         }
 
         public void Up()
@@ -56,6 +61,17 @@ namespace Golf
                 // Отталкиваем камень в направлении удара
                 other.rigidbody.AddForce(m_dir * power, ForceMode.Impulse);
                 onCollisionStone?.Invoke();
+                PlayRandomSound(stoneSounds);
+            }
+        }
+
+        private void PlayRandomSound(AudioClip[] audioClips)
+        {
+            if (audioClips.Length > 0)
+            {
+                int randomIndex = Random.Range(0, audioClips.Length);
+                AudioClip selectedClip = audioClips[randomIndex];
+                SoundManager.Instance.PlaySound(selectedClip); // Воспроизводим случайный звук через SoundManager
             }
         }
     }

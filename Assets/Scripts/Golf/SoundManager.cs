@@ -15,10 +15,13 @@ namespace Golf
         public float fadeDuration = 1f;
 
         [Header("Sound Effects")]
-        public AudioSource uiAudioSource; // Для звуков интерфейса
         public AudioSource generalAudioSource; // Для других звуков
-        public AudioClip mainMenuClip;
-        public AudioClip gameplayClip;
+
+        [Header("Audio Clips")]
+        public List<AudioClip> audioClips; // Список всех аудиоклипов, которые нужно предзагрузить
+
+        // Поле для хранения исходной громкости
+        public float originalVolume = 0.5f;
 
         private void Awake()
         {
@@ -26,18 +29,15 @@ namespace Golf
             {
                 Instance = this;
                 DontDestroyOnLoad(gameObject);
+
+                foreach (var clip in audioClips)
+                {
+                    clip.LoadAudioData();
+                }
             }
             else
             {
                 Destroy(gameObject);
-            }
-            if (mainMenuClip != null)
-            {
-                mainMenuClip.LoadAudioData(); // Загружаем данные аудио для главного меню
-            }
-            if (gameplayClip != null)
-            {
-                gameplayClip.LoadAudioData(); // Загружаем данные аудио для геймплея
             }
         }
 
@@ -62,21 +62,19 @@ namespace Golf
         public void SwitchMusic(AudioSource from, AudioSource to)
         {
             if (!from.isPlaying && to.isPlaying) return; // Если целевой трек уже играет, не делаем ничего
-            StartCoroutine(FadeMusic(from, to));
+            StartCoroutine(FadeSwitchMusic(from, to));
         }
 
-        private IEnumerator FadeMusic(AudioSource from, AudioSource to)
+        private IEnumerator FadeSwitchMusic(AudioSource from, AudioSource to)
         {
-            float initialVolume = from.volume;
-
             // Плавное уменьшение громкости текущей музыки
             for (float t = 0; t < fadeDuration; t += Time.deltaTime)
             {
-                from.volume = Mathf.Lerp(initialVolume, 0, t / fadeDuration);
+                from.volume = Mathf.Lerp(originalVolume, 0, t / fadeDuration);
                 yield return null;
             }
             from.Stop();
-            from.volume = initialVolume; // Восстанавливаем громкость для будущих запусков
+            from.volume = originalVolume; // Восстанавливаем громкость для будущих запусков
 
             // Включаем следующую музыку с постепенным увеличением громкости
             to.volume = 0;
@@ -84,27 +82,54 @@ namespace Golf
 
             for (float t = 0; t < fadeDuration; t += Time.deltaTime)
             {
-                to.volume = Mathf.Lerp(0, initialVolume, t / fadeDuration);
+                to.volume = Mathf.Lerp(0, originalVolume, t / fadeDuration);
                 yield return null;
             }
-            to.volume = initialVolume;
+            to.volume = originalVolume;
         }
 
-        // Проигрывает звук для UI или глобальных звуков
-        public void PlaySound(AudioClip clip)
+        public IEnumerator FadeMusic(float targetVolume)
         {
-            if (uiAudioSource != null && clip != null)
+            AudioSource audioSource = GetCurrentPlayingMusic();
+            // Сохраняем начальную громкость, если это еще не сделано
+            originalVolume = audioSource.volume;
+
+            // Плавное уменьшение громкости текущей музыки
+            for (float t = 0; t < fadeDuration; t += Time.deltaTime)
             {
-                uiAudioSource.PlayOneShot(clip);
+                audioSource.volume = Mathf.Lerp(originalVolume, targetVolume, t / fadeDuration);
+                yield return null;
             }
+
+            audioSource.volume = 0.25f; // Устанавливаем конечную громкость
         }
 
-        // Проигрывает 3D-звук, если его вызывает другой объект
-        public void Play3DSound(AudioClip clip, Vector3 position)
+        public IEnumerator RestoreMusicVolume()
+        {
+            AudioSource audioSource = GetCurrentPlayingMusic();
+            // Плавное увеличение громкости до исходного значения
+            for (float t = 0; t < fadeDuration; t += Time.deltaTime)
+            {
+                audioSource.volume = Mathf.Lerp(audioSource.volume, originalVolume, t / fadeDuration);
+                yield return null;
+            }
+
+            audioSource.volume = originalVolume; // Восстанавливаем исходную громкость
+        }
+
+        public AudioSource GetCurrentPlayingMusic()
+        {
+            if (mainMenuMusic.isPlaying) return mainMenuMusic;
+            if (gameplayMusic.isPlaying) return gameplayMusic;
+            return null; // Возвращаем null, если никакой трек не играет
+        }
+
+
+        public void PlaySound(AudioClip clip)
         {
             if (generalAudioSource != null && clip != null)
             {
-                AudioSource.PlayClipAtPoint(clip, position);  // Пример для 3D-звука
+                generalAudioSource.PlayOneShot(clip);
             }
         }
     }

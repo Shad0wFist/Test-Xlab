@@ -19,15 +19,15 @@ namespace Golf
         public GameObject gamePlayObjects;
         public GameObject gameOverObjects;
         private Quaternion plowRotation;
+        [SerializeField] private AudioClip trollRoar;
 
-        [SerializeField] private SoundManager soundManager;
 
 
         private Camera mainCamera;
 
         private void OnEnable()
         {
-            soundManager.PlayGameplayMusic();
+            SoundManager.Instance.PlayGameplayMusic();
             trollAnimator = troll.GetComponent<Animator>();
             plowRotation = plowObject.transform.rotation;
             mainCamera = Camera.main;
@@ -58,6 +58,7 @@ namespace Golf
             gamePlayUI.SetActive(false);
             yield return MoveCamera(cameraTargetPos1, cameraMoveDuration);
             trollAnimator.SetTrigger("FirstTrigger");
+            SoundManager.Instance.PlaySound(trollRoar);
             yield return new WaitForSeconds(trollAnimator.GetCurrentAnimatorStateInfo(0).length);
             yield return MoveCamera(cameraTargetPos2, cameraMoveDuration);
             trollController.StartMoving();

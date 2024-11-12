@@ -15,6 +15,7 @@ namespace Golf
 
         private void OnEnable()
         {
+            SoundManager.Instance.GetCurrentPlayingMusic().volume = 0.2f;
             Time.timeScale = 0f;
             gamePlayUI.SetActive(false);
             if (PauseUI != null)
@@ -24,6 +25,7 @@ namespace Golf
 
         private void OnDisable()
         {
+            SoundManager.Instance.GetCurrentPlayingMusic().volume = SoundManager.Instance.originalVolume;
             Time.timeScale = 1f;
             if(PauseUI != null)
                 PauseUI.SetActive(false);

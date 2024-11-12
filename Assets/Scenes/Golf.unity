@@ -647,6 +647,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 94541168}
+        m_TargetAssemblyTypeName: Golf.UIButtonSound, Assembly-CSharp
+        m_MethodName: PlayClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &37376630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1147,7 +1159,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f3a1730d37b58a84d93c5cc3ff8019cd, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.75
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1570,7 +1582,7 @@ Transform:
   m_GameObject: {fileID: 94541165}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 781.7772, y: 271.8343, z: -4.03705}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2693,6 +2705,18 @@ MonoBehaviour:
       - m_Target: {fileID: 744607561}
         m_TargetAssemblyTypeName: Golf.Pause, Assembly-CSharp
         m_MethodName: Replay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 94541168}
+        m_TargetAssemblyTypeName: Golf.UIButtonSound, Assembly-CSharp
+        m_MethodName: PlayClickSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5619,6 +5643,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 94541168}
+        m_TargetAssemblyTypeName: Golf.UIButtonSound, Assembly-CSharp
+        m_MethodName: PlayClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &450227019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7118,7 +7154,7 @@ Transform:
   m_GameObject: {fileID: 609573023}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 230.12025, y: 209.65166, z: -6.685715}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7142,11 +7178,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenuMusic: {fileID: 1343695311}
   gameplayMusic: {fileID: 62510965}
-  fadeDuration: 5
-  uiAudioSource: {fileID: 94541166}
+  fadeDuration: 1
   generalAudioSource: {fileID: 662292877}
-  mainMenuClip: {fileID: 8300000, guid: d82b8641b62d20444a2c05f90fff2ab6, type: 3}
-  gameplayClip: {fileID: 8300000, guid: f3a1730d37b58a84d93c5cc3ff8019cd, type: 3}
+  audioClips:
+  - {fileID: 8300000, guid: f3a1730d37b58a84d93c5cc3ff8019cd, type: 3}
+  - {fileID: 8300000, guid: 84e85dc2ff8db90489d6d881cf7824f2, type: 3}
+  - {fileID: 8300000, guid: 2aa04548c97c60646b9aeac6712ab75c, type: 3}
+  - {fileID: 8300000, guid: aa3985b0a17410a49aa700cbdbda5c46, type: 3}
+  - {fileID: 8300000, guid: 46503955a03c5714bb7f39135bf6a5e2, type: 3}
+  - {fileID: 8300000, guid: c6d4f2f8eb947164ca896f03e02570ff, type: 3}
+  - {fileID: 8300000, guid: a2a8f93bd5b631c41b497607ffee4860, type: 3}
+  - {fileID: 8300000, guid: d9704c1bedd9ed947bab4d55574c8725, type: 3}
+  - {fileID: 8300000, guid: 71ef89c053a854046ae7f0d4bab96378, type: 3}
+  - {fileID: 8300000, guid: 23eb30cf99a35b345a2026781cdc17f0, type: 3}
+  - {fileID: 8300000, guid: 662fdac031f3e924c9b3f6a048f2db2b, type: 3}
+  - {fileID: 8300000, guid: c9e0bb548fbc30144baba1d622581365, type: 3}
+  - {fileID: 8300000, guid: d82b8641b62d20444a2c05f90fff2ab6, type: 3}
+  - {fileID: 8300000, guid: f73fe956239611342bd20aa114a70019, type: 3}
+  - {fileID: 8300000, guid: 1efc5477057f0c14a93cef15b8b90729, type: 3}
+  - {fileID: 8300000, guid: e7526bbb2e4a72a4dbe162fb7a9784e5, type: 3}
+  - {fileID: 8300000, guid: cb799f046f60aab4f8936660be425256, type: 3}
+  - {fileID: 8300000, guid: c87202735070e9543b3f1d695fb93460, type: 3}
+  - {fileID: 8300000, guid: 6586acfb7d2aa3c41aaef3857f5dd940, type: 3}
+  - {fileID: 8300000, guid: f7a118d6fc8a7824c8908d0469b60175, type: 3}
+  originalVolume: 0.5
 --- !u!1 &614858970
 GameObject:
   m_ObjectHideFlags: 0
@@ -8166,7 +8221,7 @@ Transform:
   m_GameObject: {fileID: 662292876}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 781.7772, y: 271.8343, z: -4.03705}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12347,7 +12402,7 @@ MonoBehaviour:
   plowObject: {fileID: 350799694413529035}
   gamePlayObjects: {fileID: 1241018628}
   gameOverObjects: {fileID: 1220640904}
-  soundManager: {fileID: 609573026}
+  trollRoar: {fileID: 8300000, guid: e7526bbb2e4a72a4dbe162fb7a9784e5, type: 3}
 --- !u!1 &1066566349
 GameObject:
   m_ObjectHideFlags: 0
@@ -14501,6 +14556,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 94541168}
+        m_TargetAssemblyTypeName: Golf.UIButtonSound, Assembly-CSharp
+        m_MethodName: PlayClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1226665193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15348,6 +15415,7 @@ MonoBehaviour:
   gameOverUI: {fileID: 147820882}
   gamePlayState: {fileID: 1064466012}
   mainMenuState: {fileID: 12947645}
+  loseSound: {fileID: 8300000, guid: c87202735070e9543b3f1d695fb93460, type: 3}
 --- !u!4 &1256368349 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1179599579098953273, guid: e1c5c663cd0bdad498cd62b9df2abef6, type: 3}
@@ -15661,7 +15729,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d82b8641b62d20444a2c05f90fff2ab6, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.75
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -16086,6 +16154,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1064466014}
         m_TargetAssemblyTypeName: Golf.GamePlay, Assembly-CSharp
         m_MethodName: Pause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 94541168}
+        m_TargetAssemblyTypeName: Golf.UIButtonSound, Assembly-CSharp
+        m_MethodName: PlayClickSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16998,6 +17078,18 @@ MonoBehaviour:
       - m_Target: {fileID: 744607561}
         m_TargetAssemblyTypeName: Golf.Pause, Assembly-CSharp
         m_MethodName: MainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 94541168}
+        m_TargetAssemblyTypeName: Golf.UIButtonSound, Assembly-CSharp
+        m_MethodName: PlayClickSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -18757,6 +18849,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1255092564}
         m_TargetAssemblyTypeName: Golf.GameOver, Assembly-CSharp
         m_MethodName: MainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 94541168}
+        m_TargetAssemblyTypeName: Golf.UIButtonSound, Assembly-CSharp
+        m_MethodName: PlayClickSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -20832,6 +20936,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 94541168}
+        m_TargetAssemblyTypeName: Golf.UIButtonSound, Assembly-CSharp
+        m_MethodName: PlayClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1676789827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21235,7 +21351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   maxHP: 200
-  animationDivider: 1.3
+  animationDivider: 1.5
   gameOverObjects: {fileID: 1220640904}
   gamePlayObjects: {fileID: 1241018628}
   stoneSpawner: {fileID: 400275987}
@@ -21244,6 +21360,9 @@ MonoBehaviour:
   trollPos: {fileID: 2042523496}
   playerController: {fileID: 2010914364}
   healthBarSlider: {fileID: 2142181463}
+  trollDamaged: {fileID: 8300000, guid: 1efc5477057f0c14a93cef15b8b90729, type: 3}
+  trollDamagedHead: {fileID: 8300000, guid: f73fe956239611342bd20aa114a70019, type: 3}
+  thud: {fileID: 8300000, guid: f7a118d6fc8a7824c8908d0469b60175, type: 3}
 --- !u!1 &1703863883
 GameObject:
   m_ObjectHideFlags: 0
@@ -23507,54 +23626,6 @@ Transform:
   m_Children:
   - {fileID: 665261269}
   m_Father: {fileID: 960679523}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1884453391
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1884453393}
-  - component: {fileID: 1884453392}
-  m_Layer: 0
-  m_Name: PlowController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1884453392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1884453391}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e95c7605da9c3c41abb49c06ab0c4e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxAngle: 30
-  speed: 360
-  power: 1000
-  point: {fileID: 1667986650}
---- !u!4 &1884453393
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1884453391}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 86.25083, y: 21.714, z: 54.239292}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1884455553
 PrefabInstance:
@@ -26313,6 +26384,7 @@ MonoBehaviour:
   playerWinUI: {fileID: 381201657}
   gamePlayState: {fileID: 1064466012}
   mainMenuState: {fileID: 12947645}
+  winSound: {fileID: 8300000, guid: 6586acfb7d2aa3c41aaef3857f5dd940, type: 3}
 --- !u!1 &2128386565
 GameObject:
   m_ObjectHideFlags: 0
@@ -26663,6 +26735,19 @@ MonoBehaviour:
   speed: 600
   power: 37
   point: {fileID: 1667986650}
+  swooshSounds:
+  - {fileID: 8300000, guid: 71ef89c053a854046ae7f0d4bab96378, type: 3}
+  - {fileID: 8300000, guid: 23eb30cf99a35b345a2026781cdc17f0, type: 3}
+  - {fileID: 8300000, guid: 662fdac031f3e924c9b3f6a048f2db2b, type: 3}
+  - {fileID: 8300000, guid: c9e0bb548fbc30144baba1d622581365, type: 3}
+  stoneSounds:
+  - {fileID: 8300000, guid: 84e85dc2ff8db90489d6d881cf7824f2, type: 3}
+  - {fileID: 8300000, guid: 2aa04548c97c60646b9aeac6712ab75c, type: 3}
+  - {fileID: 8300000, guid: aa3985b0a17410a49aa700cbdbda5c46, type: 3}
+  - {fileID: 8300000, guid: 46503955a03c5714bb7f39135bf6a5e2, type: 3}
+  - {fileID: 8300000, guid: c6d4f2f8eb947164ca896f03e02570ff, type: 3}
+  - {fileID: 8300000, guid: a2a8f93bd5b631c41b497607ffee4860, type: 3}
+  - {fileID: 8300000, guid: d9704c1bedd9ed947bab4d55574c8725, type: 3}
 --- !u!135 &350799694415782158
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -29061,7 +29146,6 @@ SceneRoots:
   - {fileID: 786035642}
   - {fileID: 1041431953}
   - {fileID: 674816979}
-  - {fileID: 1884453393}
   - {fileID: 1619919691}
   - {fileID: 1241018629}
   - {fileID: 1220640905}
